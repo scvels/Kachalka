@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FitnessClub_DianaBodyanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FitnessClub_DianaBodyanModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FitnessClub_DianaBodyanModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Client" EntityType="FitnessClub_DianaBodyanModel.Client" />
+    <EntitySet Name="Gender" EntityType="FitnessClub_DianaBodyanModel.Gender" />
+    <EntitySet Name="Order" EntityType="FitnessClub_DianaBodyanModel.Order" />
+    <EntitySet Name="OrderService" EntityType="FitnessClub_DianaBodyanModel.OrderService" />
+    <EntitySet Name="Post" EntityType="FitnessClub_DianaBodyanModel.Post" />
+    <EntitySet Name="Role" EntityType="FitnessClub_DianaBodyanModel.Role" />
+    <EntitySet Name="Service" EntityType="FitnessClub_DianaBodyanModel.Service" />
+    <EntitySet Name="Staff" EntityType="FitnessClub_DianaBodyanModel.Staff" />
+    <EntitySet Name="sysdiagrams" EntityType="FitnessClub_DianaBodyanModel.sysdiagrams" />
+    <EntitySet Name="User" EntityType="FitnessClub_DianaBodyanModel.User" />
+    <AssociationSet Name="FK_Client_Gender" Association="FitnessClub_DianaBodyanModel.FK_Client_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Client_User" Association="FitnessClub_DianaBodyanModel.FK_Client_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Client" Association="FitnessClub_DianaBodyanModel.FK_Order_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_OrderService" Association="FitnessClub_DianaBodyanModel.FK_Order_OrderService">
+      <End Role="OrderService" EntitySet="OrderService" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Staff" Association="FitnessClub_DianaBodyanModel.FK_Order_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderService_Service" Association="FitnessClub_DianaBodyanModel.FK_OrderService_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="OrderService" EntitySet="OrderService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Post" Association="FitnessClub_DianaBodyanModel.FK_Staff_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Staff" EntitySet="Staff" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Authorization_Role" Association="FitnessClub_DianaBodyanModel.FK_Authorization_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="IdClient" />
+    </Key>
+    <Property Name="IdClient" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdGender" Type="Int32" />
+    <Property Name="IdUser" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Gender" Relationship="FitnessClub_DianaBodyanModel.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
+    <NavigationProperty Name="User" Relationship="FitnessClub_DianaBodyanModel.FK_Client_User" FromRole="Client" ToRole="User" />
+    <NavigationProperty Name="Order" Relationship="FitnessClub_DianaBodyanModel.FK_Order_Client" FromRole="Client" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="IdGender" />
+    </Key>
+    <Property Name="IdGender" Type="Int32" Nullable="false" />
+    <Property Name="GenderName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Client" Relationship="FitnessClub_DianaBodyanModel.FK_Client_Gender" FromRole="Gender" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="IdOrder" />
+    </Key>
+    <Property Name="IdOrder" Type="Int32" Nullable="false" />
+    <Property Name="IdClient" Type="Int32" Nullable="false" />
+    <Property Name="IdStaff" Type="Int32" Nullable="false" />
+    <Property Name="DateAndTime" Type="DateTime" Precision="0" />
+    <Property Name="IdOrderService" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="FitnessClub_DianaBodyanModel.FK_Order_Client" FromRole="Order" ToRole="Client" />
+    <NavigationProperty Name="OrderService" Relationship="FitnessClub_DianaBodyanModel.FK_Order_OrderService" FromRole="Order" ToRole="OrderService" />
+    <NavigationProperty Name="Staff" Relationship="FitnessClub_DianaBodyanModel.FK_Order_Staff" FromRole="Order" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="OrderService">
+    <Key>
+      <PropertyRef Name="IdOrderService" />
+    </Key>
+    <Property Name="IdOrderService" Type="Int32" Nullable="false" />
+    <Property Name="IdService" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="FitnessClub_DianaBodyanModel.FK_Order_OrderService" FromRole="OrderService" ToRole="Order" />
+    <NavigationProperty Name="Service" Relationship="FitnessClub_DianaBodyanModel.FK_OrderService_Service" FromRole="OrderService" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="IdPost" />
+    </Key>
+    <Property Name="IdPost" Type="Int32" Nullable="false" />
+    <Property Name="Position" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Salary" Type="Int32" />
+    <Property Name="HoursWeek" Type="Int32" />
+    <NavigationProperty Name="Staff" Relationship="FitnessClub_DianaBodyanModel.FK_Staff_Post" FromRole="Post" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="IdRole" />
+    </Key>
+    <Property Name="IdRole" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="FitnessClub_DianaBodyanModel.FK_Authorization_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="IdService" />
+    </Key>
+    <Property Name="IdService" Type="Int32" Nullable="false" />
+    <Property Name="ServicesName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Duration" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="TypeOfTraining" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypeOfService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NumberOfVisits" Type="Int32" />
+    <Property Name="NumberOfDays" Type="Int32" />
+    <Property Name="NumberOfMonths" Type="Int32" />
+    <NavigationProperty Name="OrderService" Relationship="FitnessClub_DianaBodyanModel.FK_OrderService_Service" FromRole="Service" ToRole="OrderService" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="IdStaff" />
+    </Key>
+    <Property Name="IdStaff" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdPost" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="FitnessClub_DianaBodyanModel.FK_Order_Staff" FromRole="Staff" ToRole="Order" />
+    <NavigationProperty Name="Post" Relationship="FitnessClub_DianaBodyanModel.FK_Staff_Post" FromRole="Staff" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IdRole" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="FitnessClub_DianaBodyanModel.FK_Client_User" FromRole="User" ToRole="Client" />
+    <NavigationProperty Name="Role" Relationship="FitnessClub_DianaBodyanModel.FK_Authorization_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_Client_Gender">
+    <End Type="FitnessClub_DianaBodyanModel.Gender" Role="Gender" Multiplicity="0..1" />
+    <End Type="FitnessClub_DianaBodyanModel.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="IdGender" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="IdGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Client_User">
+    <End Type="FitnessClub_DianaBodyanModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="FitnessClub_DianaBodyanModel.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Client">
+    <End Type="FitnessClub_DianaBodyanModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="FitnessClub_DianaBodyanModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="IdClient" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="IdClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_OrderService">
+    <End Type="FitnessClub_DianaBodyanModel.OrderService" Role="OrderService" Multiplicity="1" />
+    <End Type="FitnessClub_DianaBodyanModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderService">
+        <PropertyRef Name="IdOrderService" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="IdOrderService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Staff">
+    <End Type="FitnessClub_DianaBodyanModel.Staff" Role="Staff" Multiplicity="1" />
+    <End Type="FitnessClub_DianaBodyanModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="IdStaff" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="IdStaff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderService_Service">
+    <End Type="FitnessClub_DianaBodyanModel.Service" Role="Service" Multiplicity="0..1" />
+    <End Type="FitnessClub_DianaBodyanModel.OrderService" Role="OrderService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="IdService" />
+      </Principal>
+      <Dependent Role="OrderService">
+        <PropertyRef Name="IdService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Post">
+    <End Type="FitnessClub_DianaBodyanModel.Post" Role="Post" Multiplicity="1" />
+    <End Type="FitnessClub_DianaBodyanModel.Staff" Role="Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="IdPost" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="IdPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Authorization_Role">
+    <End Type="FitnessClub_DianaBodyanModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="FitnessClub_DianaBodyanModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

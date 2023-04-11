@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d76aa60d813f408ab11561f542810a60" Name="Diagram1" ZoomLevel="125">
+        <EntityTypeShape EntityType="FitnessClub_DianaBodyanModel.Client" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="FitnessClub_DianaBodyanModel.Gender" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="FitnessClub_DianaBodyanModel.Order" Width="1.5" PointX="7.5" PointY="1.375" />
+        <EntityTypeShape EntityType="FitnessClub_DianaBodyanModel.OrderService" Width="1.5" PointX="5.25" PointY="12.5" />
+        <EntityTypeShape EntityType="FitnessClub_DianaBodyanModel.Post" Width="1.5" PointX="3" PointY="8.875" />
+        <EntityTypeShape EntityType="FitnessClub_DianaBodyanModel.Role" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="FitnessClub_DianaBodyanModel.Service" Width="1.5" PointX="3" PointY="12" />
+        <EntityTypeShape EntityType="FitnessClub_DianaBodyanModel.Staff" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="FitnessClub_DianaBodyanModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="FitnessClub_DianaBodyanModel.User" Width="1.5" PointX="3" PointY="1.5" />
+        <AssociationConnector Association="FitnessClub_DianaBodyanModel.FK_Client_Gender" />
+        <AssociationConnector Association="FitnessClub_DianaBodyanModel.FK_Client_User" />
+        <AssociationConnector Association="FitnessClub_DianaBodyanModel.FK_Order_Client" />
+        <AssociationConnector Association="FitnessClub_DianaBodyanModel.FK_Order_OrderService" />
+        <AssociationConnector Association="FitnessClub_DianaBodyanModel.FK_Order_Staff" />
+        <AssociationConnector Association="FitnessClub_DianaBodyanModel.FK_OrderService_Service" />
+        <AssociationConnector Association="FitnessClub_DianaBodyanModel.FK_Staff_Post" />
+        <AssociationConnector Association="FitnessClub_DianaBodyanModel.FK_Authorization_Role" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
